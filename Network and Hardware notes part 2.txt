@@ -5,7 +5,7 @@ Introducing disk drives and various removable storage media
 --------------------------------------------------------
 Lesson 1 - HARD DRIVES
 
-	-Main storage of teh computer, write data on platter. HDD and SDD
+	-Main storage of the computer, write data on platter. HDD and SDD
 	
 	Hard Drive Overview
 		-Saving takes from RAM and stores it to hard drive
@@ -19,7 +19,7 @@ Lesson 1 - HARD DRIVES
 		6.)Once saved that area of disk is not accessible by other file saves.
 
 	Hard Drive Components
-		ï Disk platters: 
+		‚Ä¢ Disk platters: 
 				-Non-volatile disk platters made of metal glass with magnetic coating.
 				-3.5inch thick, 334GB or higher
 				-Data is stored on rings or tracks
@@ -34,12 +34,12 @@ Lesson 1 - HARD DRIVES
 	 			-LBA is 28-bit long
 				-New 48-bit can support a single drive
 	
-		ï Read/write heads
+		‚Ä¢ Read/write heads
 				-Mechanism that store and read data on the platter
-		ï Head actuator
-		ï Spindle motor
-		ï Jumpers
-		ï Disk controller
+		‚Ä¢ Head actuator
+		‚Ä¢ Spindle motor
+		‚Ä¢ Jumpers
+		‚Ä¢ Disk controller
 			-Handles the transfer of data between component and computer
 			-IDE
 				-Built in
@@ -57,11 +57,11 @@ Lesson 1 - HARD DRIVES
 		-Capacity can be from 8 GB to 2 TB +
 
 	SSD Components
-		ï Controller
+		‚Ä¢ Controller
 			-Directs the flow of information to and from flash storage and SSD internal memory
-		ï DRAM memory
+		‚Ä¢ DRAM memory
 			-Used by SSD to perform copy and erase
-		ï NAND flash chips
+		‚Ä¢ NAND flash chips
 			-Similar to flashdrive, it is non-volitile, storage using millions of transitors called cells to store data
 			-On the SSDs use microscopic cells SLCs(single layer cells) and MLCs(Multi layer) 
 			-Each cell is a transitor that holds a 1 or 0 charge
@@ -70,7 +70,7 @@ Lesson 1 - HARD DRIVES
 			-Page can be 2 to 4kb in size
 			-Block is a group of pages up to 256 or 512KB
 			-Multi blocks make up a NAND flash chip		
-		ï Connectors for power and data
+		‚Ä¢ Connectors for power and data
 				
 
 	HARD DRIVE FORMMATTING
@@ -102,13 +102,13 @@ Lesson 1 - HARD DRIVES
 				Three substructures
 				1.)Master boot program
 				2.)Master partition table
-				3.)Two-byte ìend-of-sectorî marker, 0x55AA
+				3.)Two-byte ‚Äúend-of-sector‚Äù marker, 0x55AA
 			-Limitations of MBR include size limited to 64 bytes
 			-In MBR there is a primary and extended partition
 			
-			ïExtended Boot Record: contains a partition table for data and applications
+			‚Ä¢Extended Boot Record: contains a partition table for data and applications
 			
-			ïVolume Boot Record(VBR)
+			‚Ä¢Volume Boot Record(VBR)
 			-Required to sucessfully boot the OS
 			-Located at first sector, contains info about file system	
 			-Created when volume is formatted
@@ -116,19 +116,19 @@ Lesson 1 - HARD DRIVES
 	2.)Globally Unique Identifier(GUID) Partitioning
 		-Used by Intel and Macs to replace BIOS
 		The GUID partition scheme is made up of five pieces:
-			ï Protective MBR
-			ï GUID Partition Table (GPT) header
-			ï The GPT (partition entries)
-			ï Backup GPT
-			ï Backup GPT header
+			‚Ä¢ Protective MBR
+			‚Ä¢ GUID Partition Table (GPT) header
+			‚Ä¢ The GPT (partition entries)
+			‚Ä¢ Backup GPT
+			‚Ä¢ Backup GPT header
 		-Advantages over MBR include
-			ï Support for many partitions
-			ï Support for up to 10 exabytes (EB) instead of the two-terabyte (TB) limit
-			ï Provides redundancy with primary and backup tables
-			ï CRC32 fields are integrated into table for integrity
-			ï A unique identifier is created for each partition
-			ï A GUID is used to define partition type
-			ï Partitions are labeled with a 36 Unicode character readable name
+			‚Ä¢ Support for many partitions
+			‚Ä¢ Support for up to 10 exabytes (EB) instead of the two-terabyte (TB) limit
+			‚Ä¢ Provides redundancy with primary and backup tables
+			‚Ä¢ CRC32 fields are integrated into table for integrity
+			‚Ä¢ A unique identifier is created for each partition
+			‚Ä¢ A GUID is used to define partition type
+			‚Ä¢ Partitions are labeled with a 36 Unicode character readable name
 
 	FORENSIC APPLICATION
 	-Physical Storage is the entire storage that resides on the platter or NAND flash
@@ -141,19 +141,19 @@ Lesson 1 - HARD DRIVES
 	
 	FILE SYSTEMS
 	-System used to store files
-		ï File allocation table (FAT)
+		‚Ä¢ File allocation table (FAT)
 			-Legacy, Win98.  Some flash drives
 			-File size limited to 4GB.  Max volume equaled to 2TB
 			 -Divided into four
 				discrete areas:
-				ï Volume boot record (VBR)
-				ï File allocation tables (FAT; 2)
-				ï Root directory
-				ï Data area
+				‚Ä¢ Volume boot record (VBR)
+				‚Ä¢ File allocation tables (FAT; 2)
+				‚Ä¢ Root directory
+				‚Ä¢ Data area
 			-Directories in FAT contain: Filename, DOS info, time, start cluster, file size.
 			-Contain pointers to consecutive clusters
 
-		ï New Technology File System (NTFS)
+		‚Ä¢ New Technology File System (NTFS)
 			-Current, Win7
 			-Everything is stored in files to easily locate and maintain
 			-Security descriptor seperates files
@@ -171,9 +171,9 @@ Lesson 1 - HARD DRIVES
 				-security descriptors
 				-data about file
 
-		ï Extended file system (ext2, ext3, ext4)
+		‚Ä¢ Extended file system (ext2, ext3, ext4)
 			-Some Linux
-		ï Hierarchical file system (HFS, HFS+ and HFSX)
+		‚Ä¢ Hierarchical file system (HFS, HFS+ and HFSX)
 			-OS x	
 
 	RAID(Redundant Array of Independent Disks)
