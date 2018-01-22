@@ -1,0 +1,215 @@
+MODULE 2 - Data Storage and Components
+________________________________________________________
+Introducing disk drives and various removable storage media
+
+--------------------------------------------------------
+Lesson 1 - HARD DRIVES
+
+	-Main storage of teh computer, write data on platter. HDD and SDD
+	
+	Hard Drive Overview
+		-Saving takes from RAM and stores it to hard drive
+
+	STEPS of Saving to HDD
+		1.)Request to save
+		2.)File analyzes to find availble space
+		3.)Request recieved to transfer from RAM to Disk storage
+		4.)File path is saved with a new filename and exact location
+		5.)OS with drive controller transfer and save file
+		6.)Once saved that area of disk is not accessible by other file saves.
+
+	Hard Drive Components
+		• Disk platters: 
+				-Non-volatile disk platters made of metal glass with magnetic coating.
+				-3.5inch thick, 334GB or higher
+				-Data is stored on rings or tracks
+				-Tracks are divided into sectors
+				-Sector can store 512 bytes up to 4096 bytes
+			HDD geometry
+				-Track is the entire circle around disk
+				-Sector is a division on the track, can exceed 100+
+				Platter has: heads, cylinders, groups of sectors(clusters)
+
+			LBA(logical block addressing):assinging numbers to the sectors
+	 			-LBA is 28-bit long
+				-New 48-bit can support a single drive
+	
+		• Read/write heads
+				-Mechanism that store and read data on the platter
+		• Head actuator
+		• Spindle motor
+		• Jumpers
+		• Disk controller
+			-Handles the transfer of data between component and computer
+			-IDE
+				-Built in
+				-Connects harddisk to computer
+				-
+			-EIDE
+				-Same thing as PATA
+			-PATA
+				-Same thing as EIDE
+			-SATA
+	
+	Solid State Drives(SSD)
+		-Newer storage used in notebooks, tablets, desktops, servers
+		-Less latency, less heat, less power, and electro magnetic delays than HDD
+		-Capacity can be from 8 GB to 2 TB +
+
+	SSD Components
+		• Controller
+			-Directs the flow of information to and from flash storage and SSD internal memory
+		• DRAM memory
+			-Used by SSD to perform copy and erase
+		• NAND flash chips
+			-Similar to flashdrive, it is non-volitile, storage using millions of transitors called cells to store data
+			-On the SSDs use microscopic cells SLCs(single layer cells) and MLCs(Multi layer) 
+			-Each cell is a transitor that holds a 1 or 0 charge
+			-Cells form on a grid SLCs are faster
+			-Page blocks are groups of cells on a SSD, similar to sector
+			-Page can be 2 to 4kb in size
+			-Block is a group of pages up to 256 or 512KB
+			-Multi blocks make up a NAND flash chip		
+		• Connectors for power and data
+				
+
+	HARD DRIVE FORMMATTING
+		-Preparation to use to store data
+			STEPS
+			1.)Low-level formatting:
+				-Physical manufacture formating to set the drive and tracks and sectors
+			2.)Partitioning:
+				-Dividing hard disk physical space into defined areas used by the OS
+				-Allows dual booting, for different OSs
+				-Seperates OS
+				-Protects isolation of key files
+				-Max number of partions can be 4
+				-Disk Managment(windows) and Disk Utility(Mac) are tools used to partition a drive
+			3.)High-level formatting
+				-Logical formatting performed by the OS
+				-Writes the file system to the drive
+				-Drive can manage and store data
+				-Enables the drive to manage and store data
+				-Creates the structure needed to store infor
+				-Gathers info about cluster size and avilble space
+				-Volumes are formed during high level formatting. E.g. C: drive		
+	PARTITION TYPES
+	1.)Master boot record(MBR)
+			-Traditional partition scheme used by windows, linux, and unix
+			-MBR is the most import structure of the partition when using MBR
+			-Exists at the first physical sector of drive
+			-Maintains info about the physical layout of the disk
+				Three substructures
+				1.)Master boot program
+				2.)Master partition table
+				3.)Two-byte “end-of-sector” marker, 0x55AA
+			-Limitations of MBR include size limited to 64 bytes
+			-In MBR there is a primary and extended partition
+			
+			•Extended Boot Record: contains a partition table for data and applications
+			
+			•Volume Boot Record(VBR)
+			-Required to sucessfully boot the OS
+			-Located at first sector, contains info about file system	
+			-Created when volume is formatted
+			
+	2.)Globally Unique Identifier(GUID) Partitioning
+		-Used by Intel and Macs to replace BIOS
+		The GUID partition scheme is made up of five pieces:
+			• Protective MBR
+			• GUID Partition Table (GPT) header
+			• The GPT (partition entries)
+			• Backup GPT
+			• Backup GPT header
+		-Advantages over MBR include
+			• Support for many partitions
+			• Support for up to 10 exabytes (EB) instead of the two-terabyte (TB) limit
+			• Provides redundancy with primary and backup tables
+			• CRC32 fields are integrated into table for integrity
+			• A unique identifier is created for each partition
+			• A GUID is used to define partition type
+			• Partitions are labeled with a 36 Unicode character readable name
+
+	FORENSIC APPLICATION
+	-Physical Storage is the entire storage that resides on the platter or NAND flash
+	-Local storage is a defined area on the physical media
+	
+	HASHING IMAGES				
+	-Appyling an algorythm that performs calcualtion on the collection of bits and returns a fixed length hex format
+	-MD5(128bit) and SHA1(160bit) are common hash types
+	-Changes to a file will change the hash value
+	
+	FILE SYSTEMS
+	-System used to store files
+		• File allocation table (FAT)
+			-Legacy, Win98.  Some flash drives
+			-File size limited to 4GB.  Max volume equaled to 2TB
+			 -Divided into four
+				discrete areas:
+				• Volume boot record (VBR)
+				• File allocation tables (FAT; 2)
+				• Root directory
+				• Data area
+			-Directories in FAT contain: Filename, DOS info, time, start cluster, file size.
+			-Contain pointers to consecutive clusters
+
+		• New Technology File System (NTFS)
+			-Current, Win7
+			-Everything is stored in files to easily locate and maintain
+			-Security descriptor seperates files
+			-Master file table(MFT) records the files on system
+			-Every record in NTFS has a header and file attributes
+			-Header value includes:
+					-Number of times the record has been used
+					-Status indicator
+					-Is sequential
+					-Status indicator showsif file is in allocated or unallocated space
+			-File Attributes show:
+				-Filename
+				-MAC 
+				-date/time
+				-security descriptors
+				-data about file
+
+		• Extended file system (ext2, ext3, ext4)
+			-Some Linux
+		• Hierarchical file system (HFS, HFS+ and HFSX)
+			-OS x	
+
+	RAID(Redundant Array of Independent Disks)
+		-Way to combine mulitple hard drives and store date in different locations
+		-Can use multiple partitions as one logical drive
+		-Methods is striping and mirroring
+
+		RAID Controller
+			-software or hardware
+			-Manages the flow of data
+		Striping
+			-Breaking up the storage into 512byte sized blocks or stripes
+			-A use for mulitple drives
+			-Boostes performance
+			-RAID 0	
+		Mirroring
+			-Mirrors the same data on multiple disks, for fault tolerance
+			-RAID 1
+		Parity
+			-Checking data when copied between storage space
+			-Ensuring copied successfully
+			-Used for data recovery
+			-RAID 5
+	Types of RAID
+		RAID 0 
+			- no fault tolerance, uses Striping 
+		RAID 1
+			-Disk Mirroring, fault tolerant
+		RAID 5
+			-Uses stripping with parity
+
+
+
+	
+			
+
+
+
+		
