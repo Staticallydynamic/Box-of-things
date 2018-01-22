@@ -1,0 +1,285 @@
+# Box-of-things
+Module 1 - 
+__________________________________________________________
+Computer Components
+Motherboards
+memory
+buses
+CPU
+input devices
+
+
+-Describing safety
+-Major compononts
+-Mother board types
+-Mobo components
+-Mobo firmware
+-System buses
+-Functions of CPU and memory
+-basic input devices and ports
+-troubleshooting
+
+-------------------------------------------
+Lesson 1
+Safety Breifing- 
+*Never open power supply or monito chassis
+1.)Remove all jewlry
+2.)Turn off power and disconnect main power cables
+3.)Use a wrist grounding strap
+
+-------------------------------------------
+Lesson 2
+Components and Terminology
+-Computer- performs operations and processes data using switches and transistor to switch on and off with 1s and 0s
+-Harware - physical component
+-Software- code in a program to dictate computer operations
+-BIOS- fireware used at startup boot
+-OS - software running on hardware/web browsers and word processors run from OS
+
+BASIC SYSTEM COMPONENTS
+1.)Chassis/power supply/cooling
+	-Chassis is the case
+	-Power allows operation: comes in 100 to 1,00 kw or more
+	-Cooling prevents damage
+
+2.)Motherboard
+	-Main circuit board
+	-Contains: CPU, BUS(pathaways of data signals),Chipset, RAM(memory of what is being processed), Firmware(code stored on ROM,BIOS)
+	-BIOS: used to boot commputer is non-voltile
+	-UEFI: newer GUI BIOS, more secure
+
+3.)Input and Output components
+	Input:
+	-Keyboard
+	-Mouse
+	-Scanner
+	Output:
+	-Monitor
+	-Speakers
+
+4.)Data Storage
+	-Primary non-volitile: HDD (hard disk drive) and the newer solid state drive (SSD)
+	-removable: Flashdeive, HDD, optic media, SD cards
+
+5.)Communication
+	-Components connecting the device to the network
+	-Cableing, NIC, wifi card
+--------------------------------------------
+Lesson 3
+Motherboard
+-Main circuit board
+-Contains CPU, ROM(firmware), Memory(RAM), Chipset, Clock, Storage interface, Expansion slots, Connectors for peripherals
+ 
+TYPES of MOBOs
+1.)ATX(advanced technology extended):modern standard for desktops
+	-formfactor(9in by 12in wide)
+	-Micro-ATX(9.5in by 9.5in)
+	-Flashable BIOS
+	-Contains PCI, USB, SATA
+2.)ITX
+	-form factor for small computers, industrial and commercial use.
+	-miniITX (17cm by 17cm)
+	-nanoITX (12cm by 12cm) - uses ARM or Atom chips
+
+3.)Rasberry Pi
+	-(3.3 by 2.1in) small computer mobo, has HDMI and USB.  from 2012
+
+MOBO FIRMWARE
+-read-only code stored in the ROM
+-BIOS is common firmware
+-Newer version is UEFI
+	-is more effiecient and greater capacity 
+	DIFFERENCES FROM UEFI
+	1.)Secure boot with OS launching from a specific cert or signiture	
+	2.)EFI shell, GUI
+	3.)Supports Hard Drives with GUID partioning tables (GPT) to have disks boot OS
+
+FUNCTIONS of FIRMWARE
+1.)Contains and executes power on self-test (POST)
+	-POST is a diognaostic utiilty that test crucial components (RAMS, video card, keyboard, disks drives)
+	-If failure may beep and display errors
+
+2.)Contains setup program
+	-Instructions on screen for configurations
+	-BIOS is stored on the seperate chip called the CMOS, UEFI stored in flash memory
+3.)Executes bootstrap loader
+	Executes where to boot the OS from.  The bootstrap loader
+4.)Contains and runs the initial drivers
+	-Contains the software driver code that communicates with the hardware
+
+
+CMOS
+	-Complementary metal oxide semiconductor(CMOS)
+	-a chip that stores clock settings, POST data, plug and play, BIOS firmware, needs battery
+
+CHIPSET
+	-controls the flow of information
+	-CPU
+	-Cache
+	-Main Memory
+	-Various PCI and USB
+	-System resources
+	-North bridge/south and southbridge
+
+JUMPERS
+	-metal pins when open can control device settings
+
+TPM(Trusted Platform Module)
+	-In Mobo, device used to encrypt. Can store encryption keys and TPM passwords
+	-Also can store creds
+------------------------------------------------------------------
+Lesson 4
+CPU and Memory
+	Processor is the CPU, processes user commands and software
+
+CPU components
+	1.)ALU(arithmetric logic unit): handles math and logical ops
+	2.)CU(control unit):Takes instructions from memory
+	3.)Registers:components that hold data to be processed
+	
+CPU Cores:
+	Each core is a unit that can process data seperately, usually 4 or 6
+
+Memory
+	-Temporary data storage
+	-Houses programs and data to be processed by the CPU
+	-Two types, ROM and RAM
+
+	ROM
+		-Non volitle
+		-Contains BIOS or UEFI
+		-Data stored on chip, read-only
+		-EEPROM or Flash ROM is a type of ROM, could be reprogrammed. USB flash and SSDs can use EEPROM
+	
+	RAM
+		-Main memory read by the CPU
+		-Volitle, requiring power to reside
+		-The amount of RAM can increase performace
+		-Can include passwords, temp files, browser history, web cache
+		-Mounted modules in connection slots
+		-Types include: SDRAM, DDR, GDDR for video cards
+		-Form factors include: DIMM(workstations) and RIMM(servers)
+---------------------------------------------------------------------
+Lesson 5 - BUS pg 23
+
+BUS is a circuit that transports data:
+	-Sends signals and powere to and from the CPU
+	-Internal bus: connects all internal components of the CPU and main memory
+	-Expansion bus: connects expansion boards to the CPU and main memory
+	-Measured in width(bit transfer) and clock speed(Hz)
+
+COMMON BUSES
+	1.)PCI: 32 or 64 bit connectors
+	
+	   PCI-E: faster, e for express, more lanes to send data.
+	
+	2.)USB(universal serial bus)
+		-Port connection, used for peripherals.
+		-3.0 USB has speeds up to 4.8 Gb/sec 10X faster
+	
+	3.)IEEE 1394 (FireWire)
+		-Fire Wire by apple
+	
+	-Parallel ATA(PATA)
+		-Used to connect optic drives and dvd
+	
+	-Serial ATA (SATA)
+		-allows greater speeds then PATA (600 MB/sec)
+		-1/4 cable plugged into the mobo
+		-eSATA for external drives
+
+----------------------------------------------------------------------
+Lesson 6
+INPUT/OUTPUT Devices and Ports
+	-Components that transfer data into and out of the computer system
+
+	-Input
+		-Keyboard, mouse, scanners
+	-Output
+		-Monitors, video display, audio output
+		-Monitors: LCD(laptops, tv, tablets, cellphones, monintors), LED(less power consumption), OLED(flexible, no backlighting)
+		-Video Cards
+		-Video Display Ports
+			-VGA and DVI-I
+		-Multimedia ports
+			-HDMI(19 pins) (10.2 Gb/s transfer rate)
+			-Display
+			-PS/2 port: Used for mouse and keyboard
+			-Audio ports: 1/8-inch jacks for microphone, speakers, headphones, etc.
+			-RJ-45: Standard Ethernet networking port
+			-VGA: Legacy video connector
+			-DVI: Digital video output
+			-HDMI: Audio and video output
+			-DisplayPort: Audio and video output
+			-FireWire: Often used in video cameras and camcorders
+			-USB: Used for a variety of removable media and devices
+			-eSATA: Used for external data storage
+	-I/O 
+		-Touch screen monitors are input and output
+-----------------------------------------------------------------------
+Lesson 7
+COMPUTER TROUBLESHOOTING
+	-Addressing and responding to common computer problems
+
+	Troubleshooting requirements
+	1.)Simple process to follow consitently
+	2.)Knowlege of what is supposed to happen
+	3.)Ability to collect data about the problem
+
+	Steps to Consider
+	1.)What are the known facts/symptoms?
+	2.)What was supposed to happen?
+	3.)Where in hte process did the breakdown occur?
+	4.)What are all the possible causes?
+	5.)What is the most likely cause or easiest fix to explore?
+	6.)Test the theory and document the results.
+
+	Other steps:
+	-Check power, loose cables, hardware, peripherals
+	-Add harddisk, CD, expansion cards, boot and test after each addition 
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+ 
+
+ 
+
+
+
+

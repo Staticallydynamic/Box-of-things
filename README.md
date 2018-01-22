@@ -1,2 +1,0 @@
-# Box-of-things
-Stuff
