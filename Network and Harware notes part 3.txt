@@ -1,0 +1,382 @@
+MODULE 3 - WINDOWS MANAGEMENT
+___________________________________
+-Layout of Windows directories, user info, user account types, file systems, comp mgmt, security features,
+	network support, Active Directory and Group policy mgmt tools.
+-Windows command-line
+-OS versions and installation
+-NTFS
+-computer managment and admin tasks
+-Windows networking tools
+-Navigate Active Directory and Group Policy
+-ADUC and group police mgmt
+-------------------------------------
+Lesson 1 - INTRO to WINDOWS
+
+	Versions
+		-Before XP was DOS-based kernal versions
+		-Since XP moved to the NT kernal
+		-XP uses FAT
+		-After XP was Windows Vista
+		-Vista brought User Account Control
+		-Windows 7 is a new an improved Vista
+		-Windows 8 in 2012, no start button?!
+		-Windows 10 introduced in 2015, brought back the start button and "cortana"
+		-Server Versions include
+			-Server 2003(XP)
+			-Server 2008(Vista/7)
+			-Server 2012(Win8/8.1)
+			-Server 2016(Win10)
+----------------------------------------
+Lesson 2 - WINDOWS COMMAND-LINE
+	-Since the release of WinXP, the command-line has more capabilities with NT-based kernel opposed to DOS
+	
+	Interface:
+		-Directory structure: file system hierarchy with a root directory and tree of subdirectories
+		-Seperated with (\) in Windows
+		-Partition root directories named as (C:\, D:\, etc)
+----------------------------------------
+Lesson 3 - BASIC COMMANDS
+	-Commands can be used for data storage, directory mgmt, file mgmt, and system functions
+
+	Topics:
+		1.)Command structure
+			-Drive letter, directory location, followed by (>)
+				-Ex. C:\Users\Public>_
+					-Indicates the current directory, type D: to switch to D drive
+
+		2.)Absolute vs. relative path
+			-Absolute path is written out and specified
+			-Relative is the current directory and can be default if not specified
+			-Ex. dir command lists the directory unless specified with dir /Desktop
+		
+		3.)Wildcards
+			-Specialized characters used in place of a file name
+			-Ex. (*) used to replace any number of characters
+				C:\ dir *.txt 
+					-Searches for all .txt files
+		
+		4.)Command switches
+			-Typed after the command to modify or add options
+		
+		5.)Help
+			-Usauge is dispalyed as well as command switch options
+			-/? in windows
+			
+	-Admin controls
+		-Format 
+			-ex. Format D:
+		-Hostname
+			-ex. hostname
+		-System info
+			-ex. systeminfo
+		-Version
+			-ex. ver
+		-Show absolute path
+			-ex. path
+		
+	-Directory command switches
+	/P	displays one page of files at a time
+	/S	displays files in the specified directory and all of its subdirectories
+	/A	displays all files regardless of their DOS attributes (Read only, Archive, System, Hidden)
+
+
+	-Make directory
+		-mkdir
+	
+	-Change directory
+		-cd
+	
+	-Remove directory and all its contents(with no confirmation prompt)
+		-rmdir C:\ /S /Q
+		-*dont run this
+	
+	-Show directory structure
+		-tree C:\		
+		
+	-Copy Command
+		ex. copy[SOURCE][DESTINATION]
+	
+	-Copy all files directories and subdirectories
+		ex. xcopy[SWITCHES][SOURCE][DESTINATION]
+		/E all directories even empty
+		/H copy hidden system files also
+	
+	-Move command
+		ex. move [ORIGINAL PATH] [NEW PATH]
+
+	-Delete command
+		ex. del[Filename]
+
+	-Display file contents 
+		ex. more[Filename]
+
+	-Find command
+		ex. find [/SWITCH] “string” [FILENAME] 
+	
+	-Repeat what was typed(can output to file with >) echo
+		ex. echo "String"
+	
+	-Display contents of file
+		ex. Type
+
+	-Multiple commands to be ran together |
+		ex. dir C:\Windows | find /i "dll" | more
+			-*finds all dlls in C:\Windows, operates from left to right order
+	
+	-Redirect output with (>)
+		ex.dir /S C:\Windows > C:\dirlist.txt
+			*writes the contents of C:\Windows to dirlist.txt
+
+	-Find a jpg and output to a txt file	
+		ex. dir /A /S C:\*.* | find /i “jpg” >> C:\dirlist.txt
+
+BATCH FILES
+	-Making a batch file allows mutliple commands to be run in a txt file with the .bat extention
+	e.x for backup
+	@ECHO OFF 
+	cd c:\
+	REM This is the location of the files that you want to sort
+	FOR %%f IN (*.doc *.txt) DO XCOPY c:\"%%f" d:\backup /m /y
+	REM This moves any files with a .doc or 
+	REM .txt extension from c:\ to d:\backup
+	REM %%f is a variable
+	FOR %%f IN (*.jpg *.png *.bmp) DO XCOPY C:\"%%f" d:\backup\images /m /y
+	REM This moves any files with a .jpg, .png, 
+	REM or .bmp extension from c:\ to c:\backup\images
+
+--------------------------------------------------------------------
+LESSON 4 - FILE SYSTEM
+	-Modern Windows uses NTFS and teh NT Kernal base system
+	-Items are store on the user profile
+	-User profiles may be processed for potential information for investigative relevance
+	
+	User Profile
+		-Create on first login
+		-located at C:\Documents and Settings\%username% in WinXP
+		-located a C:\Users\%username% in Vista\Win7 beyond
+		-Win8 allowed cloud storage access
+	AppData
+		-Stores application settings
+		-info for roaming users
+		-Located in Local , LocalLow(low intergrity tasks) , and Roaming (for roaming)
+		
+	Junction Points
+		-Created so that legacy paths can be redirected to new profile paths
+		-can be displayed dir /AL
+	
+	Time Stamps
+		-Stored as local time on FAT and UTC on NTFS
+		-Modified date and time is the last time it was opened and saved
+		-Created date is when a new file is created on a partition or USB flashdrive
+
+	NTFS
+		-Created for and after Vista/Win7
+		-Has benefits of file ownership, security, jounaling, efficiency
+		-Has ACLs(Access Control Lists)
+		-File Permissions:
+			-Read, Write, Read&Execute, Modify, Full Control
+		-Folder Permissions:
+			-Read, Write, List folder contents, Read&Execute, Modify, Full Control
+		-Inheritance:
+			-Subfolders get parents permissions
+		-ACL
+			-Right click on a file, select properties, then security tab
+		
+ 
+		-EFS(Encrypting File System)
+			-Using the cipher command
+			-FEK (File encryption key) stored with the file designated by an admin
+			-Right click, advanced, security, encrypt
+
+		-Shadow Copies
+			-Previous versions or retore points of a file
+			-Right click a file select restore previous versions
+		
+		-Alternate Data Streams(ADS)
+			-Attribute of info about a file
+			-Can be used to conceal info
+			-Can be used by altering names to create multiple data streams
+				ex. visable.txt:hidden.txt
+------------------------------------------------------------
+LESSON 5 - COMPUTER MANAGEMENT
+
+	-Utilizing the Microsoft Management Console(MMC)
+		-Task Scheduler
+			-Can "Display all running tasks" on right column
+		-Event Viewer
+			-Inquiry of OS logs
+			-Custom Views
+			-Assign tasks when certain events take place
+			-5 logs
+				-Application - about apps
+				-Security - Login attempts and file access
+				-Setup - installs and patches
+				-System -events at system level
+	
+	-User Account Control
+		-All users run with limited privs
+		-The first user created has an admin account
+	
+	-Backup and Restore
+		-System Restore
+			-has restore points; can be scheduled
+		-System Image Backup
+			-can save to external drive or optical media
+		
+	-Task Manager
+		-Tool to see what processes are running
+
+	-View Shared Folders
+		-In console lists shares
+		-($) means admin hidden share
+		-Sessions
+			-folder listing sessions, admin can disconnect users here
+		-Open files
+			-Shows opened files
+		
+	-Users and Group accounts
+
+		-NT-based creates user accounts
+		-Users can be placed in groups
+		-Group accounts include:
+					Admin
+					Poweruser -almost admin
+					Users or standard user
+		-In Computer Managemnt console add Users and Groups to view
+
+	-Device Manger
+		-view and mange hardware
+		-general, driver, details, and resources tab
+	
+	-Disk Management
+		-Allows to view and manage storage devices
+		-Location of volumes and partitions
+		-GUI tool used to divide disk space
+		-Can set up RAID
+		-Change drive letter
+		-Format
+		-Properties
+		-Managing providing options for RAID
+	
+	-Services window
+		-Services run in background without user
+		-Called daemons on UNIX and Linux
+		-Services can be dependent on other services called dependencies
+			ex. DHCP is dependent of TCP/IP driver
+		-Services show as Automatic or Manual
+		-Right click properties on a service
+			-Shows:General, Log on(account under), Recovery, Dependecies
+
+	-BitLocker Drive Encryption
+		-allows user to encrypt partitions
+		-Used in Windows Vista
+		-Used with a compatible BIOS and TPM
+		-PIN used for decrypting access
+		-Allows startup keys and pin
+		-Or just pin
+		-In Vista/7/8
+		-Win 8 can ecrypt used space only
+	
+	-Windows Registry
+		-System-defined database storing configuration information
+		-Apps can write data to the registry during install
+			-Can create new keys or open existening
+		-system components store and recieve configurations from the registry
+		-Tree structure
+		-contains keys and subkeys
+		-Hive is a group of keys
+		-Keys contain values in
+			-HKEY_LOCAL_MACHINE, HKEY_CURRENT_USER
+-----------------------------------------------------------------
+LESSON 6 - NETWORKING
+	-Windows Network and Sharing Center: 
+		-Gives a view of the network
+		-Check connections
+		-Network visual map	
+		-Troubleshoot
+		-Access adapters to change IP address, subnet, and related info
+		-There is Public, Private, Domain network types
+-----------------------------------------------------------------
+LESSON 7 - WINDOWS SERVER
+		-Windows Servers can be centrally managed
+		-Centrally from Domain Controllers that run ADUC
+		-Domain functions are govenered by group policy management
+		-Servers create scalable networks
+
+	-Domains
+		-Group of networked resources
+		-Users may authenticate to a Domain Controller
+		-Tree is one or more domains 
+		-Forest is one ore more trees with a differnt namespace
+		-If domains trust eachother uses in domains can cross domains
+
+	Active Directory Database File
+		-NTDS.DIT
+		-ADUC info
+		-Windows stores account info in SAM file
+	
+	Server Roles
+		Standalone Server
+			-Not a member of a domain
+		Domain Controllers
+			-Contain the info of ADUC
+			-Replicate info to all servers
+			-Best to keep server roles seperate for security
+	
+	Read-only Domain Controller(RODC)
+		-Proxy only read only
+
+	Group Policy
+		-Password policy
+		-Account Lockout Policy
+		-Kerberos Policy
+	Local Policy
+		-User Rights
+		-Security Options
+
+	Windows Server Security
+		-ACLs in a Domain
+		-Permission is level of access to files or folders
+		-Rights is what the user is allowed to do on the System
+
+
+	Administrator
+	dKTbx2E9
+	
+	
+			
+
+		
+	
+		
+
+			
+
+		
+			
+
+				
+
+
+			
+		
+
+			
+		
+
+
+	
+ 
+	
+
+		
+
+
+
+
+	
+
+		
+
+		
+
