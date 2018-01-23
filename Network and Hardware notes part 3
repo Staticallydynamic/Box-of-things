@@ -111,7 +111,7 @@ Lesson 3 - BASIC COMMANDS
 		ex. more[Filename]
 
 	-Find command
-		ex. find [/SWITCH] “string” [FILENAME] 
+		ex. find [/SWITCH] â€œstringâ€ [FILENAME] 
 	
 	-Repeat what was typed(can output to file with >) echo
 		ex. echo "String"
@@ -128,7 +128,7 @@ Lesson 3 - BASIC COMMANDS
 			*writes the contents of C:\Windows to dirlist.txt
 
 	-Find a jpg and output to a txt file	
-		ex. dir /A /S C:\*.* | find /i “jpg” >> C:\dirlist.txt
+		ex. dir /A /S C:\*.* | find /i â€œjpgâ€ >> C:\dirlist.txt
 
 BATCH FILES
 	-Making a batch file allows mutliple commands to be run in a txt file with the .bat extention
