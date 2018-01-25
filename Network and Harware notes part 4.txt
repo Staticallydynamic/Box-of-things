@@ -1,0 +1,166 @@
+MODULE 4 - NETWORK BASICS
+______________________________________
+	-Sharing resources and transfering data in a network
+	-Intro to TCP/IP
+	-Networking devices
+	-Media and topologies
+	-IP addressing and ports
+---------------------------------------
+Lesson 1 - NETWORK MODELS
+	-TCP/IP network model is the standard
+	-TCP/IP was developed around 1972-1973
+	
+	-Message routing
+		-enables communication between networks
+		-Messages are divided into packets
+		-Each packet has an IP address from the source and destination
+		-TCP/IP determines travel path
+		-Upon completion a confirmation is relayed back to source
+
+	TCP/IP MODEL
+		-Packets travel from Application, Transport, Internet, and Link.  And back up
+		-Packets are encapusulated and decapsulated
+		
+			-Application layer: Email, web, DNS, common services(Gateways, Proxy, App firewalls, IDS)
+				
+			-Transport layer: TCP/UDP (Firewalls)
+		
+			-Internet layer: IP, ICMP, ARP (Routers, Switches)
+		
+			-Link layer: Ethernet, Serial, Frame relay, ATM (NIC)(Switches)
+
+	TCP three way hand shake
+		-SYN -> SYN+ACK -> ACK
+	
+	Routers
+		-Link networks together
+		-Fragment data packetst o fit different sizes
+		-Each port on a router can have its own NIC and MAC address
+		-Routers use convergence to share info to other routers
+		-The info shared includes routing tables, hosts, ips
+
+	MAC address
+		-48-bit 12 digit number.
+		-six group of two digit hex
+		-First half is OUI, unique to manufacturer
+		-Second half is unique to the specific card
+		
+	NICs
+		-use MACs for addressing
+	
+	Switches
+		-can reduce broadcast traffic and segment a network
+		-Can direct data packets(Link Layer)
+------------------------------------------------------------------
+Lesson 2- Transmission Media
+	-Cable communication
+	-Wireless
+------------------------------------------------------------------
+	-Bandwith
+		-How much data the channel can handle
+	-Attenuation
+		-Weakening of a signal
+	-Twisted pair cabling
+		-UTP- unshielded 
+		-STP- shielded
+	-Common types of cable
+		-CAT 5, CAT 5e, CAT 6
+	-Connectors
+		-RJ-45, RJ-11 and RJ12 for phones
+	-Fiber-optic
+-------------------------------------------------------------------
+Lesson 3 - NETWORK TOPOLOGIES
+	-Physical
+	-Star
+	-Mesh
+
+	CSMA/CD: Cabled
+	CSMA/CA: Wireless
+
+	Network Speeds
+	-100BaseX: 100Mb/sec
+	-1000BaseX: 1Gb/sec
+-------------------------------------------------------------------
+Lesson 5 - INTERNET LAYER PROTOCOLS
+	
+	-IPv4: 32bits 32 digits
+		-Three classes A,B,C
+		-subnets: are segments of the network that share a common IP
+		-subnet mask: masks to outside ip, Three types A,B,C
+	
+	-IPV6: 
+		-128 bits, 8 groups of 4 digit numbers
+		-Loopback address for IPv6 is ::1/128 similar to 127.0.0.1
+	
+Commands
+	-ping, ipconfig, net use, net view
+	
+TCP: connection oriented
+UDP: conectionless
+	-ex. NFS, NTP, DHCP, TFTP, DNS, NBNS
+----------------------------------------------------------------------
+Lesson 7 - APPLICATION LAYER PROTOCOLS
+
+	-Protocols in the application layer
+		-SMTP, FTP, HTTPS, SNMP
+	-DHCP
+		-ipconfig /release
+		-ipconfig /renew
+
+	-Ports
+		-1-1023 are the well-known ports
+		
+	-To list open ports
+		-netstat -an
+		-netstat by itself shows current connections
+--------------------------------------------------------------------
+Lesson 8 - NETWORK TYPES
+
+		-ISDN is telecommunications
+		-Data is sectioned in packets
+	
+	LANS and WANS
+		-peer to peer and client-server
+	Fiber optimic
+		-fast ONT(optic Network Terminal) converts from fiber to ethernet
+---------------------------------------------------------------------
+Lesson 9 - Network Security
+	Encryption
+		-Symmetric: same key used to encrypt and decrypt
+		-Public key asymmetric 
+			-public and private keys used together for decryption
+		-VLAN
+			-segment and divide networks
+		
+		-Firewalls
+			-Can block unauthorized access, ports, URLs, apps, servics
+
+		-NAT
+			-allows the use of internal nonroutable IPs connected with one public facing IP address
+			-A device with NAT the internal ip before sending to the internet
+		-Packet filtering firewall
+			-Filters packet header(sorce and destination info)
+		-Stateful Insection
+			-Examines the packets and behavior beyond headers
+		-Application-gateway firewalls
+			-Checks connections between services run on internal to external 
+			-Acts as a proxy
+			-Can have NAT, URL filtering, audit logs
+		-IDS
+			-Monitors signs of intrusion
+			-detects with alerts
+			-Network and host based
+
+
+
+		-	
+		
+
+
+	
+
+		
+
+	
+
+		
