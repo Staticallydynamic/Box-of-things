@@ -1,0 +1,49 @@
+Reversing TOOLs and TECHNIQUES
+_______________________
+1- "File" command to check a file: Elf? Exe? C Source code?
+
+2- hexdump -C <filename>
+
+3- "strings" <filename>
+	-libraries
+	-functions
+	-checks for interesting strings
+
+4-objdump -d <filname>	
+
+	-"Check headers" objdump -x <filename> | less
+	-Notice text section and the starting address
+		-.text        (size) = 000001e2 +  00000000004004d0 = 0x4006b2 
+
+5- strace <filename>ltrace
+
+6- Radare "r2"
+	-"r2 <filename>
+	-aaa = automatically automate functions
+	
+	-afl = lists functions
+		
+	-a? = shows a commands
+
+	-s to change location
+		-s sym.main <tab complete>
+	
+	-pdf = prints disassembly
+
+	-VV for graph mode
+		-p ?
+		-shift R
+	-start radare with the minus D flag
+		-r2 -d <filename>
+		-aaa
+		-pdf
+		-breakpoint at start = "db <address>"
+		-VV to see graph
+		-:dc to run program
+
+
+
+
+
+	
+
