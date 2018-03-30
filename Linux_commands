@@ -6,6 +6,20 @@ all commands run in the survey. Typing exit ends the recording.
 Remember to copy the transcript file off the target and delete it
 before ending the session.
 
+STANDARD DIRECTORIES:
+• /etc—most configuration files
+• /bin—system executables (called binaries) intended for users
+• /sbin—system executables intended for administrators
+• /var—dynamic (variable) information, log files, traditionally web files
+• /usr—files not part of the OS
+• /usr/bin—programs (not part of the OS) intended for users
+• /usr/sbin—programs (not part of the OS) intended for admins
+• /proc—virtual file system (not on disk) access to read kernel memory
+• /boot—boot loader configuration and kernel images. Anything needed
+before the kernel is running.
+• /tmp—temporary file storage
+• /media—mount point for removable media (like USB drives)
+
 
 Basic Information commands:
 date: command that outputs system date/time
@@ -143,3 +157,43 @@ ls -a: to show all files
 To find hidden directories, type:
 find / -name ‘...’ –print
 find / -name ‘.* *’ –print
+
+mount: shows current security settings
+ 
+To limit user processes, add a user name or group name, or add all users to the
+/etc/security/limits.conf file and impose process limitations.
+
+Search SUID root executables:
+find / -user root –perm -4000 | xargs -0 ls -l
+
+Look for extra SUID 0 Accounts (root level user) by typing:
+awk -F: ‘($3 = = 0) { print $1 }’ /etc/passwd
+
+Display etc/shadow from user:
+passwd -S <username>
+
+Display what is loaded in the kernel:
+lsmod
+
+Output the info on a module:
+modinfo <mod name>
+
+To remove modules:
+rmmod -f
+
+Blacklist a module:
+blacklist <modulename >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
