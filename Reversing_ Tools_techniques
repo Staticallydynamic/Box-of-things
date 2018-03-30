@@ -1,4 +1,365 @@
-Reversing TOOLs and TECHNIQUES
+Guidelines when researching a Malware executble:
+
+#1
+	-What functions are being used?
+	-Size of application? Large?
+	-What imports are being used?
+	-LoadLibraryA and GetProcAddress are 2 functions used by packers
+
+
+#2
+	-Check strings
+	- String table is missing or contains only junk?
+	-Some packers  add there own strings
+	-Use pointers to PE packers to add there own strings 
+
+#3
+	-Are encrypted functions from the packer is displayed as data in the debugger?
+	-Are strings deplayed in a disassembler	
+
+#4	
+	-Packers can utilize features for encryption/decryption
+	-Can be designed to make it harder to dump the executable
+
+	 Anti-debugging Techniques:
+	
+		-The SizeOfImage: variable is stored within the PEB value is changed.  This prevents debuggers from being attached to the process and dump memory
+		-SectionHeader: tampering prevents software from dumping Image Address Space
+		-Self-Debugging: prevents another debugger from being attached
+		-Exceptions: can cause the debugger to crash, loop techniques
+
+	Behaviors of a packer
+		-realloactes the sections then renames them
+		-alters the entry point
+		-and the an original entry point is jumped to
+		-Then a stub code is used to unpack the real program
+
+	Unobfuscated
+		-Strings are intact
+		-Certain funtions are named and displayed through calls
+
+	Obfuscated or Compression(Packers)
+		-Code is displaed as data "dd" sections
+		-Section name and address makes no sense and is changed
+		-Strings are not shown when packed
+		-Functions are not shown when packed
+			
+				List of Packers:
+					-Themida
+					-Armadillo
+					-ASPack
+					-ASPR (ASProtect)
+					-BoxedApp Packer
+					-CExe
+					-dotBundle
+					-Enigma Protector
+					-EXE Bundle
+					-EXE Stealth
+					-eXPressor
+					-FSG
+					-kkrunchy
+					-MEW
+					-MPRESS
+					-Obsidium
+					-PESpin
+					-Petite
+					-RLPack Basic
+					-Smart Packer Pro
+					-Themida
+					-UPX
+					-VMProtect
+					-XComp/XPack
+
+
+BEHAVIOR of MALWARE
+
+	Obfuscation
+		-creating obfuscated code to mkae it deliberately hard to understand
+		-Strings maybe chaged to base64 or Xor
+		-String Encryption and Control-Flow Flattening(splits source code in an infinite loop with a switch statement)
+
+	Persistence
+		-Malware gaining access to remain on the system
+		-The mechamism used for persistence can help to identify the type of malware
+
+		Techniques of persistence:
+			-File classes
+			-Scheduled tasks
+			-Logon/Winlogon
+			-Services/Drivers(Sophisticated/more common)
+			-Autoruns
+			-Image File Execution
+			-Shellexecute Hooks
+			-Inproc Server32(Sophisticated/medium rare)
+			-Browser Plugins
+			-Installed COmponents
+			-DLL Load/Hijacking: a bad dll will search for a path to a good dll and load its uses into the same function 
+			-Boot Execution(Sophisticated rare)
+	
+	Privilege Escalation
+		-Exploiting a bug or vulnerability in an OS to gain elevated privledges
+
+		-Common Techniques:
+			-Dll search order hijacking
+			-Dll injection
+			-Vulnerability exploitation
+				-Buffer overflow
+				-Stack Overflow
+				-Heapspray
+				-Return Oriented Programming(ROP)
+			-Crendential Theft
+			-UAC Bypass
+	
+	Defense Evasion
+		-Evading detection/avoiding defenses
+		-Common techinques:
+			-Disabling AV
+			-Deleting itself an or logs after run
+			-Timebombs/Timestomping: logic bombs run at a predetermed event or time
+			-Stolen creds
+			-dll side loading: loading a dll at runtime in a program that requires dlls to be loaded
+			-Masquerading: hidding as legitimate progress
+			
+			-Process Hollowing: an ummaped procces in a suspended state is replaced with malcious code.  Masked in a legitimate process to evade defense
+				ex.  Hiding in svchost.exe, injecting a new process, loaded into msiexece.exe, injecting into regasm.exe into a hollowed process
+			
+			-Code Injection: the exploitation caused by a vulnerability that allowed remote code to be introduced
+	
+	Credential Theft
+		-Obtaining password from storage (SAM and Sytem file)(etc/passwd, etc/shadow)
+		-Keylogging passwords
+		-Screenshots
+		-Clipboard thief
+
+	Reconnaissance
+		-Gaining knowledge about the system
+
+	Lateral Movement
+		-Enables movement between systems and allows control of remote systems on the network
+	
+	Execution
+		-Code Execution
+
+	Colllection
+		-Identifies and gather info, exfiltrates sensitive files or logged data
+			ex. Keylogger
+
+	Command and Control
+		-Communicate with systems under their control
+			ex. Backdoor, Remote Access Trojans
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+REVERSE ENGINEERING
+	
+	Disassmebler
+		-IDA:  Free and Pro
+			-IDA: cheetsheet
+				-https://securedorg.github.io/RE101/idacheatsheet.html
+		-Binary Ninja
+		-Radare
+		-Capstone
+	
+	Debugger
+		-x64dbg
+		-Windbg, Immunity, Ollydbg
+
+	Decompliler
+		-Snowman: in x64dbg
+		-dotPeek: .NET decompiler
+
+	Infomation Gathering
+		-CFF Explorer -PE header parser. Shows Dos Headers, NT Headers, File Headers, optional and Data, Section, Resource, TLS.
+			      -CFF Explorer allows PE edititing.  Can edit metadata fields and flags. Hex editor. Parses the PE 
+		-PE Explorer
+		-BinText -Extract string from a binary
+		-Sysinternals Suite
+			-procmon: shows realtime file, network, registry, process/thread activity.  Shows info of the processes
+			-procexplorer: monitors running processes on the system
+			-autoruns
+			-regshot
+		
+		-Process Hacker
+		-InetSim
+		-Yara: rule engine for checking matching patterns with rules
+		-Wireshark
+		-API Monitor
+	
+	Helpful Websites
+		-virustotal
+		-malwr
+		-hybrid-analysis
+		-whois
+		-robtex
+		-debuggex
+
+	Support
+		-HxD Hex Editor
+		-Python
+
+		
+Debugging
+	-IDA and x64dbg
+	
+	-x64dbg: 
+		-has a CPU, breakpoints, threads, memorymap, notes, and log tab
+		-CPU shows CPU, register. Mem dump, and stack
+	
+		-enter comment ;
+		-Breakpoint  F2
+		-Step into F7
+		-Step over F8
+		-Run F9
+		-Edit Instruction Space
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Malware Analysis Checklist Information
+
+	- Information about what the file is and how it behaves
+
+	-File and Header Analysis
+
+	-PE information
+
+	-Open source information search.  Check hashes of the file with open sources
+	
+	-Gathering strings on the PE
+
+	-Check Virus total and AV sites
+
+	-Running in a VM
+		-Open source services like hybrid-analysis.com or malwr.com to get the behavior quickly 
+	
+	-Capturing Network Traffic
+
+ -Important to look at the vectors for how the malware got there.
+	-email?
+	-browser download?
+	-Introduced to network?
+	
+-Status if the firewall or Anti-Virus blocked/quarantined?
+
+-Are there any suspicious processes or exe's running
+
+-Use PE explorer tool to gain info about the file type
+
+-Look at file headers in a hex editor
+
+-Get Basic PE info
+	-parse PE with CFF Explorer
+	-Find the imports, DLLs, and libraries used
+
+-Collect Strings
+	-Using the strings command or BinText tool for Windows.  Extract strings
+
+
+Example of a Malware Analysis Report
+	https://securedorg.github.io/RE101/ReportForm.html
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Malware Analysis Report
+
+
+
+Insert information in this report as you analyze malware. It will generate a text output.
+
+Filename 
+
+ 
+
+
+.
+
+Sha256 Hash
+
+ 
+
+
+.
+
+Summary
+
+ 
+.
+
+General Characteristics
+
+ 
+
+
+.
+
+AntiVirus Detection Results
+
+ 
+
+
+.
+
+File System IOC
+
+ 
+
+
+.
+
+Network IOC
+
+ 
+
+
+.
+
+Registry IOC
+
+ 
+
+
+.
+
+Behavior & Control Flow
+
+ 
+
+
+.
+
+Appendix
+
+ 
+
+
+.
+
+
+
+Your Report: 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+	
+		
+
+
+
+
+
+
+	
+	
+		
+
+	
+
+	Reversing TOOLs and TECHNIQUES
 _______________________
 1- "File" command to check a file: Elf? Exe? C Source code?
 
